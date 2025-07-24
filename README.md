@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# MandlacX 3D Landing Page
 
-## Getting Started
+A pixel-perfect, interactive 3D landing page for the MandlacX Edge Processor, built as part of a technical assessment for SecureSight.
 
-First, run the development server:
+## ✨ Features
+- **Figma-accurate UI:** Layout and styling match the provided Figma design exactly.
+- **3D Model Viewer:** GLB model loaded with React Three Fiber and Drei, with drag-to-rotate interaction.
+- **Scroll Animation:** Model animates on first scroll and returns to original position when scrolled to top.
+- **Callout Boxes:** Key features and specs highlighted with connector lines and styled callouts.
+- **Responsive Features Grid:** Below-the-fold grid section with product features, icons, and slogan.
 
+## 🛠️ Tech Stack
+- [Next.js 15](https://nextjs.org/) (App Router)
+- [React](https://react.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [@react-three/fiber](https://docs.pmnd.rs/react-three-fiber/getting-started/introduction)
+- [@react-three/drei](https://docs.pmnd.rs/drei/introduction)
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone <your-repo-url>
+cd 3D-design/3d-design
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### 2. Install dependencies
+```bash
+npm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 3. Add your 3D model
+- Place your `model.glb` file in the `public/models/` directory.
+- (Optional) Update feature icons in `public/` as needed.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 4. Run the development server
+```bash
+npm run dev
+```
+Visit [http://localhost:3000](http://localhost:3000) to view the site.
 
-## Learn More
+## 🖱️ Usage
+- **Rotate the model:** Click and drag to view the device from any angle.
+- **Scroll animation:** The model animates on first scroll and resets when you scroll back to the top.
+- **Explore features:** Review the callout boxes and features grid for product highlights.
 
-To learn more about Next.js, take a look at the following resources:
+## 🌐 Deployment
+This project is ready for deployment on [Vercel](https://vercel.com/) or any Node.js-compatible host.
+- Build: `npm run build`
+- Start: `npm start`
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📁 Project Structure
+- `src/app/page.tsx` — Main landing page (hero, 3D model, features grid)
+- `public/models/model.glb` — 3D model file
+- `public/` — Feature icons and images
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📝 Credits
+- **Design:** Based on Figma file provided by SecureSight.
+- **3D Model:** Provided as `model.glb` (replace with your own if needed).
+- **Development:** Built by [Your Name] for the SecureSight Fullstack Developer Technical Assessment.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+For any questions or feedback, please contact [your-email@example.com].
