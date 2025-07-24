@@ -3,10 +3,12 @@ import React, { useRef, useEffect, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { useGLTF, OrbitControls, ContactShadows, Environment } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
+import Image from 'next/image';
+import * as THREE from 'three';
 
 // 3D Model (visually dominant, much bigger)
 function DeviceModel({ scrolled }: { scrolled: boolean }) {
-  const group = useRef<any>(null);
+  const group = useRef<THREE.Group>(null);
   const targetY = scrolled ? Math.PI / 10 : 0;
   useFrame(() => {
     if (group.current) {
@@ -154,30 +156,30 @@ export default function Hero3D() {
     </div>
     {/* Bullet-Proof Weapon Detection */}
     <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <img src="/bullet.png" alt="Bullet-Proof Weapon Detection Icon" className="w-6 h-6 mb-2" />
+      <Image src="/bullet.png" alt="Bullet-Proof Weapon Detection Icon" width={24} height={24} className="w-6 h-6 mb-2" />
       <div className="font-bold text-[18px] text-white mb-1">Bullet-Proof Weapon Detection</div>
       <div className="text-[15px] text-gray-300">MandlacX is trained to detect firearms, knives, and other sharp threats with precision—no internet required.</div>
     </div>
     {/* Bandwidth Card */}
     <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <img src="/bandwidth.png" alt="Bandwidth Icon" className="w-6 h-6 mb-2" />
+      <Image src="/bandwidth.png" alt="Bandwidth Icon" width={24} height={24} className="w-6 h-6 mb-2" />
       <div className="font-bold text-[18px] text-white mb-1">Bandwidth You Can Actually Afford</div>
       <div className="text-[15px] text-gray-300">No continuous streaming. No heavy uploads. Just efficient edge computing that saves your network and your budget.</div>
     </div>
     {/* Row 2 */}
     {/* Privacy Card */}
     <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <img src="/privacy.png" alt="Privacy Icon" className="w-6 h-6 mb-2" />
+      <Image src="/privacy.png" alt="Privacy Icon" width={24} height={24} className="w-6 h-6 mb-2" />
       <div className="font-bold text-[18px] text-white mb-1">Privacy by Design</div>
       <div className="text-[15px] text-gray-300">Your footage stays on-site. No cloud syncs, no external servers—just full control over your data.</div>
     </div>
     {/* Center Image */}
     <div className="flex items-center justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <img src="/model2.png" alt="MandlacX Device" className="w-[220px] h-[140px] object-contain" />
+      <Image src="/model2.png" alt="MandlacX Device" width={220} height={140} className="w-[220px] h-[140px] object-contain" />
     </div>
     {/* Latency Card */}
     <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <img src="/latency.png" alt="Latency Icon" className="w-6 h-6 mb-2" />
+      <Image src="/latency.png" alt="Latency Icon" width={24} height={24} className="w-6 h-6 mb-2" />
       <div className="font-bold text-[18px] text-white mb-1">Latency That Saves Seconds—and Lives</div>
       <div className="text-[15px] text-gray-300">Instant on-device processing means faster alerts and quicker interventions during critical moments.</div>
     </div>
@@ -186,7 +188,7 @@ export default function Hero3D() {
     <div></div>
     {/* Future-Proof AI Stack */}
     <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <img src="/future.png" alt="Future-Proof Icon" className="w-6 h-6 mb-2" />
+      <Image src="/future.png" alt="Future-Proof Icon" width={24} height={24} className="w-6 h-6 mb-2" />
       <div className="font-bold text-[18px] text-white mb-1">Future-Proof AI Stack</div>
       <div className="text-[15px] text-gray-300">With modular AI models and local firmware updates, MandlacX is built to evolve with your needs—no dependency on cloud upgrades.</div>
     </div>
@@ -205,6 +207,5 @@ export default function Hero3D() {
 }
 
 // Required for GLTF loading
-// @ts-ignore
 import { useGLTF as _useGLTF } from '@react-three/drei';
 _useGLTF.preload('/models/model.glb');
