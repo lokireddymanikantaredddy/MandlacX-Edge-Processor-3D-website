@@ -6,7 +6,6 @@ import { useFrame } from '@react-three/fiber';
 import Image from 'next/image';
 import * as THREE from 'three';
 
-// 3D Model (visually dominant, much bigger)
 function DeviceModel({ scrolled }: { scrolled: boolean }) {
   const group = useRef<THREE.Group>(null);
   const targetY = scrolled ? Math.PI / 10 : 0;
@@ -51,7 +50,6 @@ export default function Hero3D() {
     },
   ];
 
-  // Helper for yellow bullet points
   function renderDesc(desc: string) {
     return desc.split('\n').map((line, i) =>
       line.trim().startsWith('•') ? (
@@ -74,42 +72,31 @@ export default function Hero3D() {
 
   return (
     <div className="relative w-full  min-h-screen bg-[#101014] flex flex-col items-center overflow-x-hidden">
-      {/* Subheading and Heading */}
       <div className="w-full max-w-[1172px] mx-auto pt-10 pb-2 text-center z-20">
         <div className="text-[16px] text-yellow-400 tracking-widest mb-2 uppercase font-semibold">THE FUTURE OF ON-SITE AI SURVEILLANCE</div>
         <h1 className="text-[50px] leading-[1.1] font-extrabold text-white mb-2">
           MandlacX Edge <span className="italic font-light">Processor</span>
         </h1>
       </div>
-      {/* Hero Content */}
       <div className="relative w-full max-w-[1172px] mx-auto h-[700px] mt-2 flex items-center justify-center  z-10">
-        
-        {/* 3D Model */}
         <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 w-[800px] h-[500px] flex items-center justify-center">
-  <Canvas camera={{ position: [2.5, 2.2, 3.5], fov: 35 }} style={{ background: 'transparent' }}>
-    {/* Soft ambient light */}
-    <ambientLight intensity={0.7} />
-    {/* Main directional light for strong highlight */}
-    <directionalLight position={[5, 10, 5]} intensity={1.2} castShadow shadow-mapSize-width={2048} shadow-mapSize-height={2048} />
-    {/* Fill light for softer shadows */}
-    <directionalLight position={[-5, 2, -5]} intensity={0.5} />
-    {/* Optional: subtle environment for reflections */}
-    <Environment preset="city" />
-    {/* 3D Model */}
-    <DeviceModel scrolled={scrolled} />
-    {/* Soft contact shadow under the model */}
-    <ContactShadows
-      position={[0, -0.7, 0]}
-      opacity={0.35}
-      width={8}
-      height={8}
-      blur={2.5}
-      far={1.5}
-    />
-    <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} />
-  </Canvas>
-</div>
-        {/* Callout Boxes */}
+          <Canvas camera={{ position: [2.5, 2.2, 3.5], fov: 35 }} style={{ background: 'transparent' }}>
+            <ambientLight intensity={0.7} />
+            <directionalLight position={[5, 10, 5]} intensity={1.2} castShadow shadow-mapSize-width={2048} shadow-mapSize-height={2048} />
+            <directionalLight position={[-5, 2, -5]} intensity={0.5} />
+            <Environment preset="city" />
+            <DeviceModel scrolled={scrolled} />
+            <ContactShadows
+              position={[0, -0.7, 0]}
+              opacity={0.35}
+              width={8}
+              height={8}
+              blur={2.5}
+              far={1.5}
+            />
+            <OrbitControls enablePan={false} enableZoom={false} autoRotate={false} />
+          </Canvas>
+        </div>
         {callouts.map((c, idx) => (
           <div
             key={idx}
@@ -125,7 +112,6 @@ export default function Hero3D() {
             </div>
           </div>
         ))}
-        {/* SVG Connector Lines */}
         <svg className="absolute left-0 top-0 w-full h-full pointer-events-none z-30" width="1172" height="700">
           {callouts.map((c, idx) => (
             <g key={idx}>
@@ -143,69 +129,51 @@ export default function Hero3D() {
           ))}
         </svg>
       </div>
-      {/* Features grid below (reuse your previous section here) */}
       <section className="w-full flex flex-col items-center bg-[#101014] pt-20 pb-12">
-    
-
-  <div className="w-full max-w-[1172px] mx-auto grid grid-cols-3 grid-rows-3 gap-8 items-center">
-    {/* Row 1 */}
-    {/* Heading */}
-    <div className="flex flex-col justify-center items-start w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <div className="text-[22px] italic text-white mb-2 leading-tight">MandlacX Over</div>
-      <div className="text-[44px] font-extrabold text-white leading-tight">Cloud-Only<br/>Video Analytics</div>
-    </div>
-    {/* Bullet-Proof Weapon Detection */}
-    <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <Image src="/bullet.png" alt="Bullet-Proof Weapon Detection Icon" width={24} height={24} className="w-6 h-6 mb-2" />
-      <div className="font-bold text-[18px] text-white mb-1">Bullet-Proof Weapon Detection</div>
-      <div className="text-[15px] text-gray-300">MandlacX is trained to detect firearms, knives, and other sharp threats with precision—no internet required.</div>
-    </div>
-    {/* Bandwidth Card */}
-    <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <Image src="/bandwidth.png" alt="Bandwidth Icon" width={24} height={24} className="w-6 h-6 mb-2" />
-      <div className="font-bold text-[18px] text-white mb-1">Bandwidth You Can Actually Afford</div>
-      <div className="text-[15px] text-gray-300">No continuous streaming. No heavy uploads. Just efficient edge computing that saves your network and your budget.</div>
-    </div>
-    {/* Row 2 */}
-    {/* Privacy Card */}
-    <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <Image src="/privacy.png" alt="Privacy Icon" width={24} height={24} className="w-6 h-6 mb-2" />
-      <div className="font-bold text-[18px] text-white mb-1">Privacy by Design</div>
-      <div className="text-[15px] text-gray-300">Your footage stays on-site. No cloud syncs, no external servers—just full control over your data.</div>
-    </div>
-    {/* Center Image */}
-    <div className="flex items-center justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <Image src="/model2.png" alt="MandlacX Device" width={220} height={140} className="w-[220px] h-[140px] object-contain" />
-    </div>
-    {/* Latency Card */}
-    <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <Image src="/latency.png" alt="Latency Icon" width={24} height={24} className="w-6 h-6 mb-2" />
-      <div className="font-bold text-[18px] text-white mb-1">Latency That Saves Seconds—and Lives</div>
-      <div className="text-[15px] text-gray-300">Instant on-device processing means faster alerts and quicker interventions during critical moments.</div>
-    </div>
-    {/* Row 3 */}
-    {/* Empty Cell */}
-    <div></div>
-    {/* Future-Proof AI Stack */}
-    <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <Image src="/future.png" alt="Future-Proof Icon" width={24} height={24} className="w-6 h-6 mb-2" />
-      <div className="font-bold text-[18px] text-white mb-1">Future-Proof AI Stack</div>
-      <div className="text-[15px] text-gray-300">With modular AI models and local firmware updates, MandlacX is built to evolve with your needs—no dependency on cloud upgrades.</div>
-    </div>
-    {/* Slogan */}
-    <div className="flex flex-col justify-center items-end w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
-      <div className="text-right text-gray-300 italic text-[28px] leading-tight">
-        Built for Speed. <span className="font-bold text-white not-italic">Designed for Action.</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+        <div className="w-full max-w-[1172px] mx-auto grid grid-cols-3 grid-rows-3 gap-8 items-center">
+          <div className="flex flex-col justify-center items-start w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
+            <div className="text-[22px] italic text-white mb-2 leading-tight">MandlacX Over</div>
+            <div className="text-[44px] font-extrabold text-white leading-tight">Cloud-Only<br/>Video Analytics</div>
+          </div>
+          <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
+            <Image src="/bullet.png" alt="Bullet-Proof Weapon Detection Icon" width={24} height={24} className="w-6 h-6 mb-2" />
+            <div className="font-bold text-[18px] text-white mb-1">Bullet-Proof Weapon Detection</div>
+            <div className="text-[15px] text-gray-300">MandlacX is trained to detect firearms, knives, and other sharp threats with precision—no internet required.</div>
+          </div>
+          <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
+            <Image src="/bandwidth.png" alt="Bandwidth Icon" width={24} height={24} className="w-6 h-6 mb-2" />
+            <div className="font-bold text-[18px] text-white mb-1">Bandwidth You Can Actually Afford</div>
+            <div className="text-[15px] text-gray-300">No continuous streaming. No heavy uploads. Just efficient edge computing that saves your network and your budget.</div>
+          </div>
+          <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
+            <Image src="/privacy.png" alt="Privacy Icon" width={24} height={24} className="w-6 h-6 mb-2" />
+            <div className="font-bold text-[18px] text-white mb-1">Privacy by Design</div>
+            <div className="text-[15px] text-gray-300">Your footage stays on-site. No cloud syncs, no external servers—just full control over your data.</div>
+          </div>
+          <div className="flex items-center justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
+            <Image src="/model2.png" alt="MandlacX Device" width={220} height={140} className="w-[220px] h-[140px] object-contain" />
+          </div>
+          <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
+            <Image src="/latency.png" alt="Latency Icon" width={24} height={24} className="w-6 h-6 mb-2" />
+            <div className="font-bold text-[18px] text-white mb-1">Latency That Saves Seconds—and Lives</div>
+            <div className="text-[15px] text-gray-300">Instant on-device processing means faster alerts and quicker interventions during critical moments.</div>
+          </div>
+          <div></div>
+          <div className="border border-[#23262F] shadow bg-transparent p-6 flex flex-col justify-center w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
+            <Image src="/future.png" alt="Future-Proof Icon" width={24} height={24} className="w-6 h-6 mb-2" />
+            <div className="font-bold text-[18px] text-white mb-1">Future-Proof AI Stack</div>
+            <div className="text-[15px] text-gray-300">With modular AI models and local firmware updates, MandlacX is built to evolve with your needs—no dependency on cloud upgrades.</div>
+          </div>
+          <div className="flex flex-col justify-center items-end w-[260px] h-[260px]" style={{ borderRadius: '18px' }}>
+            <div className="text-right text-gray-300 italic text-[28px] leading-tight">
+              Built for Speed. <span className="font-bold text-white not-italic">Designed for Action.</span>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
   );
 }
 
-// Required for GLTF loading
 import { useGLTF as _useGLTF } from '@react-three/drei';
 _useGLTF.preload('/models/model.glb');
